@@ -1,0 +1,237 @@
+****************
+***   0001   ***   CREAR O ABRIR UNA BASE DE DATOS
+****************
+
+--------------------------------------------------------------------------------
+- EJECUTABLE PARA CREAR O ABRIR UNA BASE DE DATOS
+
+C:\sqlite3>sqlite3.exe .\1\bd1.sqlite  
+
+SALIDA
+
+SQLite version 3.39.2 2022-07-21 15:24:47
+Enter ".help" for usage hints.
+
+APUNTES
+
+* El  ejecutable  sqlite3.exe  levanta  el shell de línea de comandos de sqlite3
+* Luego se conecta a la base de  datos "bd1.sqlite"  ubicado  en  el  directorio
+  actual .\1\
+* Conectarse significa que lo abre para usarlo si este existe
+* Si no existe lo crea y lo abre para usarlo
+* El shell de línea de comandos de sqlite3 se reconoce por el  prompt  "sqlite>"   
+* Una vez que aparece el prompt "sqlite3>" podemos  escribir  los comandos punto
+* El comando punto que nos permite mostrar la base de datos actualmente  en  uso
+  es "sqlite> .databases"
+--------------------------------------------------------------------------------
+- COMANDO PUNTO PARA MOSTRAR LA BASE DE DATOS ACTUALMENTE EN USO
+
+sqlite> .databases
+
+SALIDA
+
+main: C:\sqlite3\1\bd1.db r/w
+
+APUNTES
+
+* main: Indica que el programa principal (en este caso, sqlite3.exe) está siendo
+  ejecutado.
+
+* C:\sqlite3\1\bd1.db: Es la ruta completa al archivo de la base de datos bd1.db.
+
+* r/w: Indica que la base de datos se  abrirá  en  modo de lectura/escritura. En
+  otras palabras, se permite tanto leer como escribir  en la base de datos. Esto
+  significa  que  puedes  realizar  operaciones  de  consulta (SELECT), así como
+  operaciones de modificación de datos (INSERT, UPDATE, DELETE).
+--------------------------------------------------------------------------------
+- COMO SABER SI TENGO SELECCIONADA UNA BASE DE DATOS
+
+sqlite> .databases
+
+SALIDA
+
+main: "" r/w
+
+APUNTES
+
+* El "" vacio indica que no se tiene ninguna base de datos seleccionada.
+* Esto  sucede  porque  ingresamos al shell de línea de comandos de sqlite3  sin
+  indicar ninguna base de datos es decir así "C:\sqlite3.exe"
+--------------------------------------------------------------------------------
+- COMO INGRESAR AL SHELL DE LINEA DE COMANDOS DE SQLITE3 SIN SELECCIONAR NINGUNA
+  BASE DE DATOS Y TAMPOCO CREA NINGUNA.
+  
+C:\sqlite3>sqlite3.exe
+
+SALIDA
+
+sqlite> .databases
+
+SALIDA
+
+main: "" r/w
+
+APUNTES
+
+* El "" vacio indica que no se tiene ninguna base de datos seleccionada.
+--------------------------------------------------------------------------------
+- COMO  ABRIR  UNA  BASE  DE  DATOS  QUE  NO  ESTA  EN LA RUTA ACTUAL C:\SQLITE3
+  CON EL EJECUTABLE.
+
+C:\sqlite3>sqlite3.exe "C:\otra_ruta\bd1.db"
+--------------------------------------------------------------------------------
+- COMO CREAR O ABRIR UNA BASE DE DATOS CON EL COMANDO PUNTO
+
+(1)
+
+sqlite> .open C:\\sqlite3\\1\\bd1.db
+sqlite> .databases
+main: C:\sqlite3\1\bd1.db r/w
+
+(2)
+
+sqlite> .open .\\1\\bd1.db   (El bd1.db existe entonces lo abre)
+sqlite> .database
+main: C:\sqlite3\1\bd1.db r/w
+
+sqlite> .open .\\1\\bd1.sqlite  (El bd1.db no existe entonces lo crea)
+sqlite> .databases
+main: C:\sqlite3\1\bd1.sqlite r/w
+--------------------------------------------------------------------------------
+
+****************
+***   0002   ***   COMANDOS PUNTO
+****************
+
+- COMANDO PUNTO PARA LIMPIAR LA PANTALLA DEL SHELL
+
+sqlite> .system cls
+
+- COMANDO PUNTO PARA SALIR DEL SHELL DE LINA DE COMANDOS SQLITE HACIA CMD
+
+sqlite> .exit
+
+- COMANDO PUNTO PARA CREAR O ABRIR UNA BASE DE DATOS
+
+.open nombre_de_tu_base_de_datos.db
+.open empresa.sqlite
+
+- COMANDO PUNTO PARA MOSTRAR LA BASE DE DATOS ACTUALMENTE SELECCIONADA
+
+sqlite> .databases
+
+- COMANDO PUNTO PARA VER LA ESTRUCTURA DE UNA TABLA
+
+sqlite> .schema Trabajador
+
+- COMANDO PUNTO PARA MOSTRAR TODAS LAS TABLAS DE UNA BASE DE DATOS
+
+sqlite> .tables
+
+- COMANDO PUNTO PARA MOSTRAR LA CONFIGURACION ACTUAL
+
+sqlite> .show
+
+- COMANDO PUNTO PARA CAMBIAR EL FORMATO DE SALIDA
+
+sqlite>.mode line
+sqlite>.mode columna
+sqlite>.mode box
+
+sqlite>SELECT * FROM Trabajador;     (EL FORMATO DE SALIDA SE VE MOSTRANDO REGISTROS)
+
+- COMANDO PUNTO PARA ESTABLECER LA SALIDA HACIA UN ARCHIVO
+
+sqlite>.output nombre_del_archivo.txt
+sqlite>.output salida.txt
+
+sqlite>SELECT * FROM Trabajador;     (EL RESULTADO SE VA AL ARCHIVO SALIDA.TXT)
+
+
+****************
+***   0003   ***   EJECUTAR UN SCRIPT .SQL
+****************
+
+* Creamos la carpeta "hospital" dentro de la carpeta "C:\sqlite3"
+
+C:\sqlite3>mkdir hospital ---> C:\sqlite3\hospital
+
+* Ingresamos a la carpeta "C:\sqlite3\hospital"
+
+* Copiamos dentro de la carpeta C:\sqlite3\hospital el script sql "bd_hospital.sql"
+
+* Levantamos el shell de línea de comandos desde la carpeta "C:\sqlite3\hospital"
+
+C:\sqlite3\hospital>sqlite3.exe
+
+SQLite version 3.39.2 2022-07-21 15:24:47
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+* Creamos la base de datos 
+
+sqlite> .open hospital.sqlite
+sqlite> .databases
+main: C:\sqlite3\hospital\hospital r/w
+
+* Ejectuamos el script sql
+
+sqlite> .read bd_hospital.sql
+
+* Mostrar las tablas de la base de datos actual es decir la seleccionada llamada hospital.sqlite
+
+sqlite> .tables
+Consulta
+
+* Mostrar la estructura de la tabla Consulta que se creo con el script sql "bd_hospital.sql"
+
+sqlite> .schema Consulta
+
+CREATE TABLE Consulta (
+  numeroConsulta TEXT(10) NOT NULL,
+  fecha          TEXT     NOT NULL,
+  nombreMedico   TEXT(50) NOT NULL,
+  deinpr         TEXT(20) NOT NULL,
+  procedencia    TEXT(20) NOT NULL,
+                 PRIMARY KEY (numeroConsulta)
+);
+
+****************
+***   0004   ***
+****************
+
+- COMANDO SQL PARA ELIMINAR UNA TABLA
+
+DROP TABLE nombre_de_tu_tabla;
+
+- COMANDO SQL PARA ELIMINAR UN REGISTRO
+
+DELETE FROM nombre_de_tu_tabla
+WHERE columna_clave_primaria = valor_clave_primaria;
+
+- COMANDO PARA ELIMINAR TODOS LOS REGISTROS
+
+DELETE FROM nombre_de_tu_tabla;
+
+- COMANDO SQL PARA ACTUALIZAR UN REGISTRO
+
+UPDATE nombre_de_tu_tabla
+SET columna1 = nuevo_valor1, columna2 = nuevo_valor2 
+WHERE columna_clave_primaria = valor_clave_primaria;
+
+- COMANDO SQL PARA RENOMBRAR UNA TABLA
+
+ALTER TABLE nombre_anterior RENAME TO nombre_nuevo;
+
+- COMANDO SQL PARA RENOMBRAR UNA COLUMNA DE UNA TABLA
+
+ALTER TABLE clientes
+RENAME COLUMN nombre_anterior TO nuevo_nombre;
+
+- COMANDO SQL PARA VER LA ESTRUCTURA DE UNA TABLA
+
+SELECT sql FROM sqlite_master WHERE name = 'nombre_de_tu_tabla';
+SELECT sql FROM sqlite_master WHERE name = 'Trabajador';
+
+
