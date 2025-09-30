@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:AndreaProyectoWPF"
         mc:Ignorable="d"
         Title="Base de datos Tienda"
-        Height="400"
+        Height="450"
         Width="600"
         Icon="iconoBD.ico"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         Background="LightGray">
-
 
         <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -52,7 +51,7 @@
                                 <TextBlock Text="Fecha Creación:"/>
                                 <TextBox x:Name="txtFecha"/>
 
-                                <!--combobox disponible -->
+                                <!-- ComboBox Disponible -->
                                 <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center"
                                             Margin="5">
@@ -67,11 +66,14 @@
                                         </ComboBox>
                                 </StackPanel>
 
-
-
-
-                                <TextBlock Text="Categoría:"/>
-                                <TextBox x:Name="txtCategoria"/>
+                                <!-- ComboBox Categoría -->
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="5">
+                                        <Label Content="Categoría:"
+                                               Width="80"/>
+                                        <ComboBox x:Name="cbCategoria"
+                                                  Width="450"/>
+                                </StackPanel>
                         </StackPanel>
                 </ScrollViewer>
 
@@ -98,6 +100,4 @@
                                 Click="btnLimpiar_Click"/>
                 </StackPanel>
         </Grid>
-
-
 </Window>

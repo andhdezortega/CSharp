@@ -1,5 +1,6 @@
 import sqlite3
 
+#ESTA ES LA CLASE QUE GESTIONA LA BASE DE DATOS
 
 class DBManager:
     def __init__(self, db_name="hospital.sqlite3"):
