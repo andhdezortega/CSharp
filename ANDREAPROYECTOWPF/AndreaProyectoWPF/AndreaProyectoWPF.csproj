@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.9" />
+    <Resource Include="iconoBD.ico" />
+
   </ItemGroup>
 
 </Project>

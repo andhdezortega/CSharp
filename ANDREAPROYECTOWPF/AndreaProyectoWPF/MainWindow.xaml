@@ -5,70 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AndreaProyectoWPF"
         mc:Ignorable="d"
-
-        Title="VENTANA WPF"
+        Title="Base de datos Tienda"
         Height="400"
         Width="600"
+        Icon="iconoBD.ico"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        Background="LightGray"
-        >
+        Background="LightGray">
 
 
-   <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid Margin="10">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <!-- ComboBox de IDs -->
-        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-            <TextBlock Text="Selecciona ID: " VerticalAlignment="Center"/>
-            <ComboBox x:Name="cbProductos" Width="100"
-                      SelectionChanged="cbProductos_SelectionChanged"/>
-        </StackPanel>
+                <!-- ComboBox de IDs -->
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 0 0 10">
+                        <TextBlock Text="Selecciona ID: "
+                                   VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cbProductos"
+                                  Width="100"
+                                  SelectionChanged="cbProductos_SelectionChanged"/>
+                </StackPanel>
 
-        <!-- Detalles del producto -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="10">
-                <TextBlock Text="ID:"/>
-                <TextBox x:Name="txtId" IsReadOnly="True"/>
+                <!-- Detalles del producto -->
+                <ScrollViewer Grid.Row="1"
+                              VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="10">
+                                <TextBlock Text="ID:"/>
+                                <TextBox x:Name="txtId"
+                                         IsReadOnly="True"/>
 
-                <TextBlock Text="Nombre:"/>
-                <TextBox x:Name="txtNombre"/>
+                                <TextBlock Text="Nombre:"/>
+                                <TextBox x:Name="txtNombre"/>
 
-                <TextBlock Text="Precio:"/>
-                <TextBox x:Name="txtPrecio"/>
+                                <TextBlock Text="Precio:"/>
+                                <TextBox x:Name="txtPrecio"/>
 
-                <TextBlock Text="Stock:"/>
-                <TextBox x:Name="txtStock"/>
+                                <TextBlock Text="Stock:"/>
+                                <TextBox x:Name="txtStock"/>
 
-                <TextBlock Text="Fecha Creación:"/>
-                <TextBox x:Name="txtFecha"/>
+                                <TextBlock Text="Fecha Creación:"/>
+                                <TextBox x:Name="txtFecha"/>
 
-                <TextBlock Text="Disponible (Sí/No):"/>
-                <TextBox x:Name="txtDisponible"/>
+                                <!--combobox disponible -->
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            Margin="5">
+                                        <TextBlock Text="Disponible:"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,3,0"/>
+                                        <ComboBox x:Name="cbDisponible"
+                                                  Width="475"
+                                                  HorizontalAlignment="Left">
+                                                <ComboBoxItem>Sí</ComboBoxItem>
+                                                <ComboBoxItem>No</ComboBoxItem>
+                                        </ComboBox>
+                                </StackPanel>
 
-                <TextBlock Text="Categoría:"/>
-                <TextBox x:Name="txtCategoria"/>
-            </StackPanel>
-        </ScrollViewer>
 
-        <!-- Botones de CRUD -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal"
-                    HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Content="Insertar" Width="100" Margin="5"
-                    Click="btnInsertar_Click"/>
-            <Button Content="Actualizar" Width="100" Margin="5"
-                    Click="btnActualizar_Click"/>
-            <Button Content="Eliminar" Width="100" Margin="5"
-                    Click="btnEliminar_Click"/>
-            <Button Content="Limpiar" Width="100" Margin="5"
-                    Click="btnLimpiar_Click"/>
-        </StackPanel>
-    </Grid>
+
+
+                                <TextBlock Text="Categoría:"/>
+                                <TextBox x:Name="txtCategoria"/>
+                        </StackPanel>
+                </ScrollViewer>
+
+                <!-- Botones de CRUD -->
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0">
+                        <Button Content="Insertar"
+                                Width="100"
+                                Margin="5"
+                                Click="btnInsertar_Click"/>
+                        <Button Content="Actualizar"
+                                Width="100"
+                                Margin="5"
+                                Click="btnActualizar_Click"/>
+                        <Button Content="Eliminar"
+                                Width="100"
+                                Margin="5"
+                                Click="btnEliminar_Click"/>
+                        <Button Content="Limpiar"
+                                Width="100"
+                                Margin="5"
+                                Click="btnLimpiar_Click"/>
+                </StackPanel>
+        </Grid>
 
 
 </Window>
